@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var tableMaximum = 2
     @State private var numberOfQuestions = [5, 10, 20]
     
-    @State private var questions = []
+    @State private var questions = ["1"]
     
     var body: some View {
         Form {
@@ -37,19 +37,22 @@ struct ContentView: View {
             }
             
             Section {
-                
+                Text("\(questions[currentQuestion])")
+            }
+            
+            Button("Generate questions") {
+                generateQuiestions()
             }
         }
     }
     
     private func generateQuiestions() {
-        for _ in 1...currentNumberOfQuestions {
-            questions.append("What is \(Int.random(in: 0...tableMaximum))?")
-        }
-    }
-    
-    private func showQuestion() {
+        questions.removeAll()
         
+        for _ in 1...currentNumberOfQuestions {
+            let question = "\(Int.random(in: 1...tableMaximum)) * \(Int.random(in: 1...tableMaximum)) = ??"
+            questions.append(question)
+        }
     }
 }
 
