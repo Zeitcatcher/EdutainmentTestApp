@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var numberOfQuestions = [5, 10, 20]
     
     @State private var questions = ["1"]
+    @State private var answer = 0
     
     var body: some View {
         Form {
@@ -38,6 +39,13 @@ struct ContentView: View {
             
             Section {
                 Text("\(questions[currentQuestion])")
+            } header: {
+                Text("Question")
+            }
+            
+            Section {
+                TextField("What is the answer?", value: $answer, format: .number)
+                    .keyboardType(.decimalPad)
             }
             
             Button("Generate questions") {
